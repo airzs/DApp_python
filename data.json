@@ -1,0 +1,89 @@
+{
+    "abi": [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_userName",
+                    "type": "string"
+                },
+                {
+                    "name": "_birthDate",
+                    "type": "string"
+                },
+                {
+                    "name": "_phoneNumber",
+                    "type": "string"
+                },
+                {
+                    "name": "_sex",
+                    "type": "string"
+                }
+            ],
+            "name": "upload",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [],
+            "name": "getUpload",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "_address",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "userName",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "birthDate",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "phoneNumber",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "sex",
+                    "type": "string"
+                }
+            ],
+            "name": "CreateRecord",
+            "type": "event"
+        }
+    ],
+    "contract_address": "0x131a45A0Eeee6A1fDE199973893F7405B57fED1e"
+}

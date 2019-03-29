@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>index</title>
+        <!--<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>-->
+        <script src="./static/js/lib/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <h1>区块链征信</h1>
+
+        <br><label for="Username">用户名</label><input type="text" id="userName" ></input>
+        <br><label for="Phonenumber">电话号</label><input type="text" id="phoneNumber" ></input>
+        <br><label for="birthDate">出生日期</label><input type="text" id="birthDate" ></input>
+        <br><label for="sex">性别</label><input type="text" id="sex" ></input>
+
+        <br><br><button type = "submit" id="send">提交</button>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#send").click(function(){
+                let userName = $("input[id='userName']").val();
+                let phoneNumber = $("input[id='phoneNumber']").val();
+                let birthDate = $("input[id='birthDate']").val();
+                let sex = $("input[id='sex']").val();
+
+                $.post("/upload", 
+                    {
+                        "userName": userName,
+                        "phoneNumber": phoneNumber,
+                        "birthDate": birthDate,
+                        "sex": sex
+                    },
+                    function(data, status){
+                        alert("name:\n" + data.userName + "\nphone:\n" + data.phoneNumber
+                        + "\nbirthDate:\n" + data.birthDate + "\nsex:\n" + data.sex); 
+                    }
+                );
+            });
+        });
+    </script>
+
+    </body>
+</html>
