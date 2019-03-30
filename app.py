@@ -47,10 +47,9 @@ def transaction():
         "phoneNumber": upload_data[2],
         "sex": upload_data[3]
     }
-    print(jsonify(data))
 
     return jsonify(data), 200
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
