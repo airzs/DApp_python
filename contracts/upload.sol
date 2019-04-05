@@ -8,6 +8,10 @@ contract Upload {
     string phoneNumber;
     string birthDate;
     string sex;
+    uint random;
+    mapping (uint => address) MappingID;
+
+
 
     event CreateRecord(address indexed _address, string userName, string birthDate, string phoneNumber, string sex);
 
@@ -16,13 +20,15 @@ contract Upload {
         phoneNumber = _phoneNumber;
         birthDate = _birthDate;
         sex = _sex;
+        random = uint256(keccak256(msg.sender)) % 200;
+        MappingID[random] = msg.sender;
 
         CreateRecord(msg.sender, userName, phoneNumber, birthDate, sex);
     }
 
-    function getUpload() public returns(string, string, string, string) {
+    function getUpload() public returns(string, string, string, string, uint) {
         return (
-            userName, birthDate, phoneNumber, sex
+            userName, birthDate, phoneNumber, sex, random
         );
     }
 

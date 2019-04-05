@@ -1,4 +1,5 @@
 import json
+import datetime
 from compile_solidity_utils import w3
 from flask import Flask, Response, request, jsonify
 from flask import render_template
@@ -17,7 +18,7 @@ def transaction():
     birth_date = request.values.get("birthDate").encode('utf8')
     sex = request.values.get("sex").encode('utf8')
 
-    # 设置默认账户    
+    # 设置默认账户
     w3.eth.defaultAccount = w3.eth.accounts[1]
     # 读取保存的abi和合约地址
     with open("data.json", 'r') as f:
@@ -38,18 +39,43 @@ def transaction():
     event = tx_hash.transact()
     # 等待交易被矿工记录
     w3.eth.waitForTransactionReceipt(event)
-
+    now_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     # 只读方法的调用方式
     upload_data = upload.functions.getUpload().call()
     data = {
         "userName": upload_data[0],
-        "birthDate": upload_data[1],
-        "phoneNumber": upload_data[2],
-        "sex": upload_data[3]
+        "birthDate": upload_data[2],
+        "phoneNumber": upload_data[1],
+        "sex": upload_data[3],
+        "userID":upload_data[4],
+        "time":now_time
+
     }
+    print(jsonify(data))
 
     return jsonify(data), 200
 
+@app.route("/Taccess", methods=['POST'])
+def requestdata():
+    user_ID = request.values.get("userID").encode('utf8')
+
+     # 设置默认账户
+     w3.eth.defaultAccount = w3.eth.accounts[0]
+     # 读取保存的abi和合约地址
+     with open("data.json", 'r') as f:
+         datastore = json.load(f)
+     abi = datastore["abi"]
+     contract_address = datastore["contract_address"]
+
+     # 根据保存的abi和合约地址来实例化一个合约对象
+     upload = w3.eth.contract(
+         address=contract_address, abi=abi,
+     )
+     tx_hash = Taccess.functions.Requiredata(
+         user_ID
+     )
+
+
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True)

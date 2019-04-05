@@ -46,6 +46,10 @@
                 {
                     "name": "",
                     "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "uint256"
                 }
             ],
             "payable": false,
@@ -85,5 +89,5 @@
             "type": "event"
         }
     ],
-    "contract_address": "0x131a45A0Eeee6A1fDE199973893F7405B57fED1e"
+    "contract_address": "0xcB576Fef3160084095D4136112ea61E60A9f7D90"
 }

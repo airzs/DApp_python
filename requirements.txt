@@ -1,5 +1,0 @@
-Flask==1.0.2
-flask-marshmallow==0.10.0
-Flask-RESTful==0.3.7
-py-solc==3.2.0
-web3==4.9.1

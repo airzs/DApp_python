@@ -8,27 +8,104 @@
         <title>index</title>
         <!--<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>-->
         <script src="./static/js/lib/jquery.min.js"></script>
+        <style>
+            #uploaddata{
+                position: relative;
+                left:430px;
+                top:60px;
+                border: 2px solid gray;
+                border-radius: 10px;
+                width: 500px;
+                height: 400px;
+            }
+            #uploaddata input{
+                width: 200px;
+                height: 30px;
+                margin-top: 15px;
+                margin-left: 10px;
 
+            }
+            #uploaddata label{
+                margin-left: 70px;
+            }
+            #send{
+                height: 35px;
+                width: 100px;
+                margin-left: 190px;
+                border-radius: 15px;
+                font-size:14px;
+
+            }
+            #uploaddata h1{
+                font-size: 26px;
+                margin-left: 170px;
+
+            }
+            #getdata{
+                position: relative;
+                top:100px;
+
+                width: 80%;
+                height: 200px;
+                margin-left: 120px;
+
+            }
+            .box{
+                position: relative;
+                border: 1px solid gray;
+                border-radius: 10px;
+                width: 100%;
+                height: 40px;
+                margin-left: 60px;
+                margin-bottom: 20px;
+            }
+            .box p{
+
+                height: 25px;
+                font-size: 14px;
+                float:left;
+                width: 130px;
+                margin-left: 30px;
+                margin-top:4px;
+                position: relative;
+                text-align: center;
+                padding-top: 10px;
+            }
+            #uploadtime{
+                width: 170px;
+            }
+            #uploadphone{
+                width: 200px;
+            }
+        </style>
     </head>
     <body>
-        <h1>区块链征信</h1>
+     <div id="uploaddata">
+        <h1>用户信息上传</h1>
 
-        <br><label for="Username">用户名</label><input type="text" id="userName" ></input>
-        <br><label for="Phonenumber">电话号</label><input type="text" id="phoneNumber" ></input>
-        <br><label for="birthDate">出生日期</label><input type="text" id="birthDate" ></input>
-        <br><label for="sex">性别</label><input type="text" id="sex" ></input>
+        <br><label for="Username">&nbsp;&nbsp;&nbsp;用户名&nbsp;</label><input type="text" id="userName" ></input>
+        <br><label for="Phonenumber">&nbsp;&nbsp;&nbsp;电话号&nbsp;</label><input type="text" id="phoneNumber" ></input>
+        <br><label for="birthDate">出生日期&nbsp;</label><input type="text" id="birthDate" ></input>
+        <br><label for="sex">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性别&nbsp;</label><input type="text" id="sex" ></input>
 
         <br><br><button type = "submit" id="send">提交</button>
 
+
+
+    </div>
+    <div id="getdata">
+
+    </div>
     <script type="text/javascript">
         $(document).ready(function(){
+            var DataHtml='';
             $("#send").click(function(){
                 let userName = $("input[id='userName']").val();
                 let phoneNumber = $("input[id='phoneNumber']").val();
                 let birthDate = $("input[id='birthDate']").val();
                 let sex = $("input[id='sex']").val();
 
-                $.post("/upload", 
+                $.post("/upload",
                     {
                         "userName": userName,
                         "phoneNumber": phoneNumber,
@@ -36,10 +113,17 @@
                         "sex": sex
                     },
                     function(data, status){
-                        alert("name:\n" + data.userName + "\nphone:\n" + data.phoneNumber
-                        + "\nbirthDate:\n" + data.birthDate + "\nsex:\n" + data.sex); 
+
+                        DataHtml+='<div class="box">'+'<p>'+"用户ID:"+data.userID+'</p>'+'<p>'+"用户名:" + data.userName +'</p>'+ '<p id="uploadphone">'+"电话号码:" + data.phoneNumber
+                        +'</p>'+ '<p>'+"出生日期:" + data.birthDate +'</p>'+ '<p>'+"性别:" + data.sex+'</p>'+'<p id="uploadtime">'+data.time+'</p>'+'</div>';
+
+                        getdata.innerHTML=DataHtml;
                     }
                 );
+                $("#userName").val("");
+                 $("#phoneNumber").val("");
+                 $("#birthDate").val("");
+                 $("#sex").val("");
             });
         });
     </script>

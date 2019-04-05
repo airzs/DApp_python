@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Requestdata</title>
+          <script src="jquery.min.js"></script>
+     <style>
+         #requst{
+             width:120px;
+             height:40px;
+             left:80px;
+             top:40px;
+             position:relative;
+             font-size: 16px;
+             border-radius: 15px;
+         }
+         #reqaccess{
+             width:120px;
+             height:40px;
+             left:80px;
+             top:40px;
+             position:relative;
+             margin-left: 20px;
+             font-size: 16px;
+             border-radius: 15px;
+         }
+         #DataList{
+             border:1px solid blue;
+             width:80%;
+             height:200px;
+             top:80px;
+             left:10%;
+             position:relative;
+         }
+         #reqaddress{
+
+             width:240px;
+             height:40px;
+             left:40px;
+             top:40px;
+             position:relative;
+             border-radius: 10px;
+         }
+         h1{
+             font-size: 26px;
+             margin-left: 170px;
+         }
+         #reqbody{
+             border:2px solid gray;
+             width: 45%;
+             height: 300px;
+             margin-left: 400px;
+             margin-top: 100px;
+             border-radius: 15px;
+         }
+     </style>
+     </head>
+     <body>
+         <div id="reqbody">
+         <h1>企业数据请求</h1>
+         <input type="text" id="reqaddress" placeholder="请求数据的用户ID"></input>
+         <button type="button" id="requst" >请求数据</button>
+         <button type="button" id="reqaccess" >请求授权</button>
+        </div>
+         <div id="DataList">
+
+         </div>
+     </body>
+     <script type="text/javascript">
+      $(document).ready(function(){
+          let userID = $("input[id='reqaddress']").val();
+          var DataHtml="";
+          $("#requst").click(function(){
+              $.post("/Taccess",
+                  {
+                      "userID": userID,
+                  },
+                  function(data, status){
+
+                      DataHtml+='<div class="box">'+'<p>'+"用户ID:"+data.userID+'</p>'+'<p>'+"用户名:" + data.userName +'</p>'+ '<p id="uploadphone">'+"电话号码:" + data.phoneNumber
+                      +'</p>'+ '<p>'+"出生日期:" + data.birthDate +'</p>'+ '<p>'+"性别:" + data.sex+'</p>'+'<p id="uploadtime">'+data.time+'</p>'+'</div>';
+
+                      DataList.innerHTML=DataHtml;
+                  }
+              );
+          });
+
+        });
+     </script>
