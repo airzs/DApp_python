@@ -7,14 +7,188 @@
 
         <title>Authorizelist</title>
           <script src="jquery.min.js"></script>
+          <style>
+          #authbody{
+              width:40%;
+              height: 200px;
+              position: relative;
+              border: 2px gray solid;
+              margin-left: 30%;
+              margin-top: 5%;
+              border-radius: 15px;
 
+          }
+          #authbody h1{
+              font-size: 22px;
+              margin-left: 37%;
+              margin-top: 40px;
+          }
+          #authlist{
+              border-radius: 10px;
+              font-size:14px;
+              height: 35px;
+              width: 120px;
+              margin-top:20px;
+              margin-left: 25%;
+
+          }
+          #waitlist{
+              border-radius: 10px;
+              font-size:14px;
+              height: 35px;
+              width: 120px;
+              margin-left: 30px;
+
+          }
+          #content{
+              width:60%;
+              height: 300px;
+              border: 1px blue solid;
+              margin-top: 60px;
+              margin-left: 20%;
+          }
+          #accessbutton{
+              border-radius: 10px;
+              font-size:14px;
+              height: 35px;
+              width: 120px;
+              margin-top: 30px;
+              margin-left: 80%;
+          }
+          #list{
+              font-size:16px;
+               border-radius: 10px;
+               border: 2px gray solid;
+               width:60%;
+               margin-left: 20%;
+               height: 50px;
+               margin-top: 20px;
+
+          }
+          #list p{
+              height: 25px;
+              font-size: 14px;
+              float:left;
+              width: 130px;
+              margin-left: 30px;
+              margin-top:4px;
+              position: relative;
+              text-align: center;
+              padding-top: 10px;
+          }
+          </style>
+   </head>
           <body>
-              <div id=“”>
-
+              <div id="authbody">
+                  <h1>用户授权信息</h1>
+                 <button type = "submit" id="authlist" onclick="setauthorize();">已授权列表</button>
+                  <button type = "submit" id="waitlist" onclick="waitauthorize();">待授权列表</button>
               </div>
+              <div id="content">
+              </div>
+
           </body>
           <script type="text/javascript">
-           $(document).ready(function(){
 
-             });
+               var listHtml="";
+               var authmark=[]; //记录选中的地址列表
+               var count=0;
+
+
+              function setauthorize(){
+
+                    // 这里是测试数据
+                    var data=['12345','1234','1234455'];
+                    for(var i=0;i<data.length;i++){
+
+                        listHtml+='<div id="list">'+'<p>'+'<input type="checkbox" onclick="checkclick('+i+')" id="checkbtn'+i+'">'+'</p>'+'<p>'+'已授权地址'+'</p>'+'<p id="data'+i+'">'+data[i]+'</p>'+'</div>';
+                    }
+
+                    listHtml+='<button type="submit" id="accessbutton" onclick="revokeaccess()">'+'撤回授权'+'</button>';
+
+
+                   /*$.post("/Taccess",
+                       {
+                           "userID": userID,
+                       },
+                       function(data, status){
+
+                           //取出授权列表中的地址信息
+                           for(var i=0;i<data.length;i++){
+
+                               listHtml+='<div id="list">'+'<p>'+'<input type="checkbox" onclick="checkclick('+i+')" id="checkbtn'+i+'">'+'</p>'+'<p>'+'已授权地址'+'</p>'+'<p>'+data[i]+'</p>'+'</div>';
+                           }
+
+                           listHtml+='<button type="submit" id="accessbutton">'+'撤回授权'+'</button>';
+                       }
+                   );*/
+                   content.innerHTML=listHtml;
+               }
+               function checkclick(order){
+
+                   var state=document.getElementById("checkbtn"+order);
+                   var temp=document.getElementById("data"+order);
+
+                   if(state.checked){
+                       alert("已选中");
+
+                       authmark[count]=temp;
+                       count=count+1;
+                   }
+
+                   else{
+                       alert("未选中");
+                       //在记录数组当中删除该企业的地址;
+                       for(var j=0;j<count;j++){
+				             if(authmark[j]==temp){
+                                 for(var h=j;h<count;h++){
+                                     authmark[h]=authmark[h+1];
+                                 }
+					         }
+				       }
+                       count=count-1;
+			        }
+              }
+              function revokeaccess(){
+                  alert(count);
+                  listHtml="";
+                  // 把选中的信息从授权列表里面删除
+
+
+
+                  // 重新获取用户的授权列表
+                  window.onload = setauthorize();
+                  count=0;
+              }
+              function waitauthorize(){
+                  
+                   listHtml="";
+                   var data=['12345','1234','1234455'];
+                   for(var i=0;i<data.length;i++){
+
+                       listHtml+='<div id="list">'+'<p>'+'<input type="checkbox" onclick="checkclick('+i+')" id="checkbtn'+i+'">'+'</p>'+'<p>'+'已授权地址'+'</p>'+'<p id="data'+i+'">'+data[i]+'</p>'+'</div>';
+                   }
+
+                   listHtml+='<button type="submit" id="accessbutton" onclick="revokeaccess()">'+'等待授权'+'</button>';
+
+
+                  /*$.post("/Taccess",
+                      {
+                          "userID": userID,
+                      },
+                      function(data, status){
+
+                          //取出授权列表中的地址信息
+                          for(var i=0;i<data.length;i++){
+
+                              listHtml+='<div id="list">'+'<p>'+'<input type="checkbox" onclick="checkclick('+i+')" id="checkbtn'+i+'">'+'</p>'+'<p>'+'已授权地址'+'</p>'+'<p>'+data[i]+'</p>'+'</div>';
+                          }
+
+                          listHtml+='<button type="submit" id="accessbutton">'+'撤回授权'+'</button>';
+                      }
+                  );*/
+                  content.innerHTML=listHtml;
+              }
+
+
           </script>
