@@ -12,7 +12,6 @@ contract Upload {
     mapping (uint => address) MappingID;
 
 
-
     event CreateRecord(address indexed _address, string userName, string birthDate, string phoneNumber, string sex);
 
     function upload(string _userName, string _birthDate, string _phoneNumber, string _sex)  public {
