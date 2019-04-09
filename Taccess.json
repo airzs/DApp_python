@@ -1,0 +1,288 @@
+{
+    "abi": [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "companyID",
+                    "type": "uint256"
+                },
+                {
+                    "name": "userID",
+                    "type": "uint256"
+                }
+            ],
+            "name": "requireData",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_name",
+                    "type": "string"
+                },
+                {
+                    "name": "_pw",
+                    "type": "string"
+                },
+                {
+                    "name": "_date",
+                    "type": "string"
+                },
+                {
+                    "name": "_phone",
+                    "type": "string"
+                },
+                {
+                    "name": "_sex",
+                    "type": "string"
+                }
+            ],
+            "name": "createUser",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "companyID",
+                    "type": "uint256"
+                },
+                {
+                    "name": "userID",
+                    "type": "uint256"
+                }
+            ],
+            "name": "requireAccess",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "userID",
+                    "type": "uint256"
+                }
+            ],
+            "name": "listSetAuthorizeList",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256[]"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "companyID",
+                    "type": "uint256"
+                },
+                {
+                    "name": "userID",
+                    "type": "uint256"
+                }
+            ],
+            "name": "isAccess",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "int256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "companyID",
+                    "type": "uint256"
+                },
+                {
+                    "name": "userID",
+                    "type": "uint256"
+                }
+            ],
+            "name": "addAccess",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "userID",
+                    "type": "uint256"
+                }
+            ],
+            "name": "listWaitAuthorizeList",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256[]"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_name",
+                    "type": "string"
+                },
+                {
+                    "name": "_passwd",
+                    "type": "string"
+                }
+            ],
+            "name": "createCompany",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "companyID",
+                    "type": "uint256"
+                },
+                {
+                    "name": "userID",
+                    "type": "uint256"
+                }
+            ],
+            "name": "revokeAccess",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "usrID",
+                    "type": "uint256"
+                }
+            ],
+            "name": "userID",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "cpnID",
+                    "type": "uint256"
+                }
+            ],
+            "name": "companyID",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "passwd",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "date",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "phone",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "sex",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "id",
+                    "type": "uint256"
+                }
+            ],
+            "name": "userData",
+            "type": "event"
+        }
+    ],
+    "contract_address": "0xf9Cd49814D30eFf6499F2E3b4FF272C3089d702E"
+}
